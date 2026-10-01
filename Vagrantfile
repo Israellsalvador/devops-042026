@@ -11,16 +11,23 @@ Vagrant.configure("2") do |config|
     controle.vm.box = "shekeriev/debian-12"
     controle.vm.network "private_network", ip: "172.17.177.100"
     controle.vm.network "forwarded_port", guest: 80, host: 8080
+    controle.vm.network "forwarded_port", guest: 8090, host: 8090
     controle.vm.network "forwarded_port", guest: 9443, host: 9443
+    controle.vm.network "forwarded_port", guest: 8080, host: 8081
     controle.vm.hostname = "controle"	    
     controle.vm.provision "ansible_local" do |al|
       al.playbook = "installdocker.yml"
       al.install_mode = "apt"
     end  
 
+   controle.vm.provision "ansible_local" do |al|
+     al.playbook = "installjenkins.yml"
+     al.install_mode = "apt"
+   end
+
     controle.vm.provider "virtualbox" do |vb|
       vb.name = "controle"
-      vb.memory = "2048"
+      vb.memory = "8000"
       vb.cpus = 2
     end
   end
