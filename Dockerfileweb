@@ -1,9 +1,9 @@
-FROM debian:11-slim
+FROM debian:12-slim
 
 LABEL maintainer="Rogerio Martinho rogerio@asf.com"
 ENV PORT=80
 
-RUN apt update && apt install apache2 php php7.4-mysql vim -y  && a2enmod php7.4 
+RUN apt update && apt install apache2 php php-mysql vim -y  && a2enmod php8.2 
 
 # Remova o arquivo index.html padrão
 RUN rm -f /var/www/html/index.html
