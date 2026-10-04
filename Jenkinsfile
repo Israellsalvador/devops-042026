@@ -6,7 +6,7 @@ pipeline {
 
         IMAGE_WEB   = "israelsalvador/web:${TAG}"
         IMAGE_DB    = "israelsalvador/db:${TAG}"
-        IMAGE_NGINX = "israelsalvador/webserver-golang:${TAG}"
+        IMAGE_NGINX = "israelsalvador/nginx:${TAG}"
 
         COMPOSE_FILE = "${env.COMPOSE_FILE}"
     }
@@ -63,7 +63,7 @@ pipeline {
 
                             echo "Build da imagem NGINX..."
                             docker build \
-                                -t israelsalvador/webserver-golang:latest \
+                                -t israelsalvador/nginx:latest \
                                 -f Dockerfilenginx .
 
                             echo "Push da imagem WEB..."
