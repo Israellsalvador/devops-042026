@@ -73,7 +73,7 @@ pipeline {
                             docker push israelsalvador/db:latest
 
                             echo "Push da imagem NGINX..."
-                            docker push israelsalvador/webserver-golang:latest
+                            docker push israelsalvador/nginx:latest
 
                             docker logout
                         '''
