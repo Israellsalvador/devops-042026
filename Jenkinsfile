@@ -28,7 +28,7 @@ pipeline {
                 slackSend channel: '#ci-devops', message: "Build das imagens iniciado", tokenCredentialId: 'slack-token'
 
                 script {
-                    docker.withRegistry("https://${REGISTRY}", 'dockerhub') {
+                    docker.withRegistry("https://index.docker.io/v1/", 'dockerhub') {
                         docker.build(IMAGE_WEB,   "-f Dockerfileweb .").push()
                         docker.build(IMAGE_DB,    "-f Dockerfiledb .").push()
                         docker.build(IMAGE_NGINX, "-f Dockerfilenginx .").push()
