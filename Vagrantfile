@@ -14,6 +14,8 @@ Vagrant.configure("2") do |config|
     controle.vm.network "forwarded_port", guest: 8090, host: 8090
     controle.vm.network "forwarded_port", guest: 9443, host: 9443
     controle.vm.network "forwarded_port", guest: 8080, host: 8081
+    controle.vm.network "forwarded_port", guest: 8086, host: 8086
+    controle.vm.network "forwarded_port", guest: 3000, host: 3000
     controle.vm.hostname = "controle"	    
     controle.vm.provision "ansible_local" do |al|
       al.playbook = "installdocker.yml"
@@ -36,6 +38,12 @@ Vagrant.configure("2") do |config|
     web.vm.box = "shekeriev/debian-12"
     web.vm.network "private_network", ip: "172.17.177.101"
     web.vm.hostname = "web"
+  
+   web.vm.provision "ansible_local" do |al|
+      al.playbook = "installdocker.yml"
+      al.install_mode = "apt"
+    end
+
     web.vm.provider "virtualbox" do |vb|
       vb.name = "web"
       vb.memory = "512"

@@ -22,6 +22,7 @@
           - zip
           - curl
           - vim
+          - git
         state: present
       tags:
         - install
